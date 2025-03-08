@@ -1,5 +1,19 @@
-import Database from 'better-sqlite3';
+import initSqlJs from 'sql.js';
 
-const db = new Database('./library.db');
+let db;
 
-export default db;
+async function initializeDB() {
+  const SQL = await initSqlJs({
+    locateFile: file => `https://sql.js.org/dist/${file}`
+  });
+  db = new SQL.Database();
+}
+
+async function getDB() {
+  if (!db) {
+    await initializeDB();
+  }
+  return db;
+}
+
+export default getDB;
