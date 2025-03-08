@@ -7,6 +7,7 @@ db.exec(\`
     title TEXT NOT NULL,
     author TEXT NOT NULL,
     genre TEXT,
+    image TEXT,
     qr_code TEXT UNIQUE
   );
 
